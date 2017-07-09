@@ -1,0 +1,30 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="track-number">
+  <template>
+    <style>
+      :host {
+        --primary-color: #4170b6;
+        --secondary-color: white;
+        --light-color: rgba(65, 112, 182, 0.48);
+      }
+
+      h4 {
+        text-transform: uppercase;
+        color: var(--primary-color);
+        margin: 0;
+      }
+    </style>
+    <div>
+      <h4>Track my number</h4>
+
+    </div>
+  </template>
+  <script>
+    class TrackNumber extends Polymer.Element {
+      static get is() { return 'track-number' }
+    }
+
+    customElements.define(TrackNumber.is, TrackNumber)
+  </script>
+</dom-module>
