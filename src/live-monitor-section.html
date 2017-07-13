@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-document.html">
 
 <dom-module id="live-monitor-section">
   <template>
@@ -62,11 +63,13 @@
         margin: 0;
       }
     </style>
+    
+
     <div>
       <h4>Ripas Outpatient Department</h4>
       <div class="monitor">
         <h2>Current number is</h2>
-        <h1>1129</h1>
+        <h1>[[monitorData.mainNumber]]</h1>
       </div>
       <h5>Your number is</h5>
       <div class="numbers-away">
@@ -77,6 +80,13 @@
   <script>
     class LiveMonitorSection extends Polymer.Element {
       static get is() { return 'live-monitor-section' }
+      static get properties() {
+        return {
+          monitorData: {
+            type: Object,
+          }
+        }
+      }
     }
 
     customElements.define(LiveMonitorSection.is, LiveMonitorSection)
