@@ -20,6 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<!-- <link rel="import" href="../bower_components/polymerfire/firebase-app.html"> -->
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="my-view1.html">
@@ -68,16 +69,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: bold;
       }
     </style>
-    <firebase-app
+    <!-- <firebase-app
       auth-domain="five-backend.firebaseapp.com"
       database-url="https://five-backend.firebaseio.com"
       api-key="AIzaSyDszKCr1Dlbg3ha0ambLbzTgjp0yV9CPfk">
-    </firebase-app>
-    <firebase-document
-      id="doc"
-      path="/data"
-      data="{{monitorData}}">
-    </firebase-document>
+    </firebase-app> -->
+
     <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"

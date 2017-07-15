@@ -17,7 +17,8 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.7",
     "paper-tabs": "PolymerElements/paper-tabs#^2.0.0",
     "paper-input": "PolymerElements/paper-input#^2.0.1",
-    "polymerfire": "firebase/polymerfire#^2.1.0"
+    "polymerfire": "firebase/polymerfire#^2.1.0",
+    "polymer-redux": "tur-nr/polymer-redux#^1.0.1"
   },
   "resolutions": {
     "polymer": "^2.0.0-rc.3",

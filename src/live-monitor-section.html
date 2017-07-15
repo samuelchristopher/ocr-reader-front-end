@@ -1,5 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-document.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="./redux-store.html">
 
 <dom-module id="live-monitor-section">
   <template>
@@ -63,8 +65,17 @@
         margin: 0;
       }
     </style>
-    
 
+    <firebase-app
+      auth-domain="five-backend.firebaseapp.com"
+      database-url="https://five-backend.firebaseio.com"
+      api-key="AIzaSyDszKCr1Dlbg3ha0ambLbzTgjp0yV9CPfk">
+    </firebase-app>
+    <firebase-document
+      id="doc"
+      path="/data"
+      data="{{monitorData}}">
+    </firebase-document>
     <div>
       <h4>Ripas Outpatient Department</h4>
       <div class="monitor">
@@ -76,17 +87,16 @@
         <p>10 numbers away</p>
       </div>
     </div>
+
   </template>
   <script>
     class LiveMonitorSection extends Polymer.Element {
       static get is() { return 'live-monitor-section' }
-      static get properties() {
-        return {
-          monitorData: {
-            type: Object,
-          }
-        }
-      }
+      // static get properties() {
+      //   return {
+      //
+      //   }
+      // }
     }
 
     customElements.define(LiveMonitorSection.is, LiveMonitorSection)
