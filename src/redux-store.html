@@ -13,13 +13,17 @@
         case "TRACK_NUMBER":
           console.log('track number')
           let { userNumber } = action
-          let numbersAway = parseInt(userNumber) - parseInt(state.mainNumber) 
+          let numbersAway = parseInt(userNumber) - parseInt(state.mainNumber)
           return Object.assign({}, state, { userNumber, isTrackingNumber: true, numbersAway })
           break;
         case "RECEIVED_MAIN_NUMBER":
           console.log('received main number')
           let { mainNumber } = action
-          return Object.assign({}, state, { mainNumber })
+          let updateNumbersAway
+          if (state.userNumber) {
+            updateNumbersAway = parseInt(state.userNumber) - parseInt(state.mainNumber)
+          }
+          return Object.assign({}, state, { mainNumber, numbersAway: updateNumbersAway })
           break;
         default:
           return state
