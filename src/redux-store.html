@@ -3,22 +3,32 @@
   <script>
     const initialState = {
       mainNumber: '',
-      userNumber: 12
+      userNumber: '',
+      isTrackingNumber: false,
+      numbersAway: ''
     }
 
-    const reducer = (state, action) => {
-      if (!state) return initialState
+    const reducer = (state = initialState, action) => {
       switch (action.type) {
         case "TRACK_NUMBER":
-          // const userNumber = action.payload.userNumber
-          // return Object.assign({}, state, { userNumber })
-          return { userNumber: action.userNumber }
+          console.log('track number')
+          let { userNumber } = action
+          let numbersAway = parseInt(userNumber) - parseInt(state.mainNumber) 
+          return Object.assign({}, state, { userNumber, isTrackingNumber: true, numbersAway })
+          break;
+        case "RECEIVED_MAIN_NUMBER":
+          console.log('received main number')
+          let { mainNumber } = action
+          return Object.assign({}, state, { mainNumber })
+          break;
+        default:
+          return state
       }
     }
 
-    const store = Redux.createStore(reducer, initialState)
+    window.store = Redux.createStore(reducer)
 
 
     ReduxMixin = PolymerRedux(store)
-    console.log(initialState)
+    // console.log(initialState)
   </script>

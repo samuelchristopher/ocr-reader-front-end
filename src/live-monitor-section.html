@@ -64,6 +64,10 @@
       p {
         margin: 0;
       }
+
+      div[hidden] {
+        display: none;
+      }
     </style>
 
     <firebase-app
@@ -82,21 +86,52 @@
         <h2>Current number is</h2>
         <h1>[[monitorData.mainNumber]]</h1>
       </div>
-      <h5>Your number is</h5>
-      <div class="numbers-away">
-        <p>10 numbers away</p>
+      <div hidden="[[!isTrackingNumber]]">
+        <h5>Your number is</h5>
+        <div class="numbers-away">
+          <p>[[numbersAway]] numbers away</p>
+        </div>
       </div>
     </div>
 
   </template>
   <script>
-    class LiveMonitorSection extends Polymer.Element {
+    class LiveMonitorSection extends ReduxMixin(Polymer.Element) {
       static get is() { return 'live-monitor-section' }
-      // static get properties() {
-      //   return {
-      //
-      //   }
-      // }
+      static get properties() {
+        return {
+          isTrackingNumber: {
+            type: Boolean,
+            // value: store.getState().isTrackingNumber,
+            statePath: 'isTrackingNumber'
+          },
+          userNumber: {
+            type: Number,
+            statePath: 'userNumber'
+          },
+          monitorData: {
+            type: Object,
+            observer: '_observeMonitorData'
+          },
+          numbersAway: {
+            type: Number,
+            statePath: 'numbersAway'
+          }
+        }
+      }
+      _observeMonitorData(old, newData) {
+        if (newData) {
+          let { mainNumber } = newData
+          let action = {
+            type: 'RECEIVED_MAIN_NUMBER',
+            mainNumber
+          }
+          return store.dispatch(action)
+        }
+      }
+      _computeNumbersAway(monitorData, userNumber) {
+        return parseInt(monitorData.mainNumber) - parseInt(userNumber)
+      }
     }
 
     customElements.define(LiveMonitorSection.is, LiveMonitorSection)

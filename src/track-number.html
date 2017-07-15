@@ -1,4 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 
 <dom-module id="track-number">
   <template>
@@ -14,15 +16,32 @@
         color: var(--primary-color);
         margin: 0;
       }
+
+      paper-button[raised] {
+        background:  var(--primary-color);
+        color: var(--secondary-color);
+        margin: 0;
+      }
     </style>
     <div>
       <h4>Track my number</h4>
-
+      <paper-input type="number" id="userNumberInput" label="Your number"></paper-input>
+      <paper-button on-click="trackNumber" raised>track</paper-button>
     </div>
   </template>
   <script>
     class TrackNumber extends Polymer.Element {
       static get is() { return 'track-number' }
+
+      trackNumber() {
+        let userNumber = this.$.userNumberInput.value
+        let action = {
+          type: 'TRACK_NUMBER',
+          userNumber
+        }
+        store.dispatch(action)
+        this.$.userNumberInput.value = ''
+      }
     }
 
     customElements.define(TrackNumber.is, TrackNumber)
